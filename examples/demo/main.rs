@@ -129,8 +129,10 @@ fn check_for_loaded(
 }
 
 // Helper function to see if there was a key press this frame
-pub fn detect_keypress(keys: EventReader<CrosstermKeyEventWrapper>) -> bool {
-    !keys.is_empty()
+pub fn detect_keypress(mut keys: EventReader<CrosstermKeyEventWrapper>) -> bool {
+    let res = !keys.is_empty();
+    keys.clear();
+    res
 }
 
 // Simple update function that most screens will use
